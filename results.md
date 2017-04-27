@@ -24,8 +24,10 @@ Go is hella fast (10K requests per second), and really simple. Simple to set up.
 
 Node was super simple to set up. Its perf, however, was surprisingly sub-par.
 
+Phoenix feels Railsey which in my book is not a pro. However, for being a full-fledged framework, it performs well. It hovered around 2.7K requests per second.
 
-## Summary
+
+## Benchmark summary
 
 Clojure (users), async postgres test
 
@@ -81,7 +83,17 @@ Node
     Waiting:       12   42  11.1     40     126
     Total:         12   43  10.8     41     128
 
-## Raw
+Phoenix
+
+    Requests per second:    2799.22 [#/sec] (mean)
+                min  mean[+/-sd] median   max
+    Connect:        0    0   0.7      0       9
+    Processing:     5   35   9.4     33      97
+    Waiting:        5   35   9.3     33      97
+    Total:         11   35   9.3     34      97
+
+
+## Raw results
 
 Clojure (users)
 
@@ -320,3 +332,42 @@ Node
     98%     80
     99%     91
     100%    128 (longest request)
+
+
+Phoenix
+
+    Server Software:        Cowboy
+    Server Hostname:        127.0.0.1
+    Server Port:            3000
+
+    Document Path:          /api/users/
+    Document Length:        392 bytes
+
+    Concurrency Level:      100
+    Time taken for tests:   1.786 seconds
+    Complete requests:      5000
+    Failed requests:        0
+    Total transferred:      3635000 bytes
+    HTML transferred:       1960000 bytes
+    Requests per second:    2799.22 [#/sec] (mean)
+    Time per request:       35.724 [ms] (mean)
+    Time per request:       0.357 [ms] (mean, across all concurrent requests)
+    Transfer rate:          1987.34 [Kbytes/sec] received
+
+    Connection Times (ms)
+                min  mean[+/-sd] median   max
+    Connect:        0    0   0.7      0       9
+    Processing:     5   35   9.4     33      97
+    Waiting:        5   35   9.3     33      97
+    Total:         11   35   9.3     34      97
+
+    Percentage of the requests served within a certain time (ms)
+    50%     34
+    66%     36
+    75%     38
+    80%     40
+    90%     44
+    95%     49
+    98%     69
+    99%     82
+    100%     97 (longest request)
