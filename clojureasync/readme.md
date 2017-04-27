@@ -5,7 +5,7 @@
 - Install Java, Clojure, Lein
 - Run `lein deps`
 - Check that it works by running `lein ring server`
-- Visit: http://localhost:3000/users/
+- Verify it is working at: http://localhost:3000/api/users/
 - Production build `lein do clean, ring uberjar`
 - Production run: `java -jar target/server.jar`
 
