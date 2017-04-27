@@ -1,4 +1,4 @@
-# Clojure
+# Go
 
 ## Setup
 
