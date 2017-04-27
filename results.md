@@ -24,7 +24,7 @@ Go is hella fast (10K requests per second), and really simple. Simple to set up.
 
 Node was super simple to set up. Its perf, however, was surprisingly sub-par.
 
-Phoenix feels Railsey which in my book is not a pro. However, for being a full-fledged framework, it performs well. It hovered around 2.7K requests per second.
+Phoenix feels Railsey which in my book is not a pro. However, for being a full-fledged framework, it performs well. It hovered around the mid 3K requests per second. This is the only platform that logged extensivley wehn run (a reasonable default). So, to be fair to Phoenix, I disabled logging. This bumped the perf up by a few hundred requests per second.
 
 
 ## Benchmark summary
@@ -85,12 +85,12 @@ Node
 
 Phoenix
 
-    Requests per second:    2799.22 [#/sec] (mean)
+    Requests per second:    3423.30 [#/sec] (mean)
                 min  mean[+/-sd] median   max
-    Connect:        0    0   0.7      0       9
-    Processing:     5   35   9.4     33      97
-    Waiting:        5   35   9.3     33      97
-    Total:         11   35   9.3     34      97
+    Connect:        0    0   1.0      0      64
+    Processing:     5   29   9.5     27      96
+    Waiting:        5   28   9.4     26      95
+    Total:          9   29   9.5     27      96
 
 
 ## Raw results
@@ -344,30 +344,30 @@ Phoenix
     Document Length:        392 bytes
 
     Concurrency Level:      100
-    Time taken for tests:   1.786 seconds
+    Time taken for tests:   1.461 seconds
     Complete requests:      5000
     Failed requests:        0
     Total transferred:      3635000 bytes
     HTML transferred:       1960000 bytes
-    Requests per second:    2799.22 [#/sec] (mean)
-    Time per request:       35.724 [ms] (mean)
-    Time per request:       0.357 [ms] (mean, across all concurrent requests)
-    Transfer rate:          1987.34 [Kbytes/sec] received
+    Requests per second:    3423.30 [#/sec] (mean)
+    Time per request:       29.212 [ms] (mean)
+    Time per request:       0.292 [ms] (mean, across all concurrent requests)
+    Transfer rate:          2430.41 [Kbytes/sec] received
 
     Connection Times (ms)
                 min  mean[+/-sd] median   max
-    Connect:        0    0   0.7      0       9
-    Processing:     5   35   9.4     33      97
-    Waiting:        5   35   9.3     33      97
-    Total:         11   35   9.3     34      97
+    Connect:        0    0   1.0      0      64
+    Processing:     5   29   9.5     27      96
+    Waiting:        5   28   9.4     26      95
+    Total:          9   29   9.5     27      96
 
     Percentage of the requests served within a certain time (ms)
-    50%     34
-    66%     36
-    75%     38
-    80%     40
-    90%     44
-    95%     49
-    98%     69
-    99%     82
-    100%     97 (longest request)
+    50%     27
+    66%     29
+    75%     30
+    80%     32
+    90%     35
+    95%     38
+    98%     78
+    99%     86
+    100%     96 (longest request)
