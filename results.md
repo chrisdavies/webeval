@@ -22,6 +22,9 @@ Go is hella fast (10K requests per second), and really simple. Simple to set up.
 
 .NET's best-case performed surprisingly well, considering I was using a full ORM (EF Core). But it did have pretty bad standard deviations, raning from 3500 reqs/sec down to the low 200s. Some runs produced *19 second* max request times, presumably due to GC. In general, though, the runs seemed to hover around the mid 2K requests per second. With Dapper, a micro ORM, this improved up to the low-to-mid 3K requests per second.
 
+Node was super simple to set up. Its perf, however, was surprisingly sub-par.
+
+
 ## Summary
 
 Clojure (users), async postgres test
@@ -69,6 +72,14 @@ Go
     Waiting:        3   18  10.4     16      92
     Total:          9   30  12.9     29     113
 
+Node
+
+    Requests per second:    2304.10 [#/sec] (mean)
+                    min  mean[+/-sd] median   max
+    Connect:        0    0   1.2      0      45
+    Processing:    12   43  10.9     41     128
+    Waiting:       12   42  11.1     40     126
+    Total:         12   43  10.8     41     128
 
 ## Raw
 
@@ -270,3 +281,42 @@ Go
     98%     69
     99%    104
     100%    113 (longest request)
+
+
+Node
+
+    Server Software:
+    Server Hostname:        localhost
+    Server Port:            3000
+
+    Document Path:          /api/users/
+    Document Length:        392 bytes
+
+    Concurrency Level:      100
+    Time taken for tests:   2.170 seconds
+    Complete requests:      5000
+    Failed requests:        0
+    Total transferred:      3005000 bytes
+    HTML transferred:       1960000 bytes
+    Requests per second:    2304.10 [#/sec] (mean)
+    Time per request:       43.401 [ms] (mean)
+    Time per request:       0.434 [ms] (mean, across all concurrent requests)
+    Transfer rate:          1352.31 [Kbytes/sec] received
+
+    Connection Times (ms)
+                min  mean[+/-sd] median   max
+    Connect:        0    0   1.2      0      45
+    Processing:    12   43  10.9     41     128
+    Waiting:       12   42  11.1     40     126
+    Total:         12   43  10.8     41     128
+
+    Percentage of the requests served within a certain time (ms)
+    50%     41
+    66%     43
+    75%     45
+    80%     46
+    90%     53
+    95%     64
+    98%     80
+    99%     91
+    100%    128 (longest request)

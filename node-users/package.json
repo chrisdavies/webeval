@@ -1,0 +1,17 @@
+{
+  "name": "node-users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cluster": "^0.7.7",
+    "express": "^4.15.2",
+    "pg-promise": "^5.6.7"
+  }
+}
