@@ -26,6 +26,7 @@ Node was super simple to set up. Its perf, however, was surprisingly sub-par.
 
 Phoenix feels Railsey which in my book is not a pro. However, for being a full-fledged framework, it performs well. It hovered around the mid 3K requests per second. This is the only platform that logged extensivley wehn run (a reasonable default). So, to be fair to Phoenix, I disabled logging. This bumped the perf up by a few hundred requests per second.
 
+Rails is slower than I expected, coming in at around 300 requests per second. I don't know if it is similar to Node in that it may need some extra configuration to take advantage of all my CPU cores.
 
 ## Benchmark summary
 
@@ -91,6 +92,15 @@ Phoenix
     Processing:     5   29   9.5     27      96
     Waiting:        5   28   9.4     26      95
     Total:          9   29   9.5     27      96
+
+Rails
+
+    Requests per second:    336.02 [#/sec] (mean)
+                min  mean[+/-sd] median   max
+    Connect:        0    0   0.4      0       4
+    Processing:    10  294  25.7    293     363
+    Waiting:        6  294  25.7    293     361
+    Total:         14  295  25.5    293     367
 
 
 ## Raw results
@@ -371,3 +381,41 @@ Phoenix
     98%     78
     99%     86
     100%     96 (longest request)
+
+Rails
+
+    Server Software:
+    Server Hostname:        127.0.0.1
+    Server Port:            3000
+
+    Document Path:          /api/users/
+    Document Length:        392 bytes
+
+    Concurrency Level:      100
+    Time taken for tests:   14.880 seconds
+    Complete requests:      5000
+    Failed requests:        0
+    Total transferred:      3610000 bytes
+    HTML transferred:       1960000 bytes
+    Requests per second:    336.02 [#/sec] (mean)
+    Time per request:       297.601 [ms] (mean)
+    Time per request:       2.976 [ms] (mean, across all concurrent requests)
+    Transfer rate:          236.92 [Kbytes/sec] received
+
+    Connection Times (ms)
+                min  mean[+/-sd] median   max
+    Connect:        0    0   0.4      0       4
+    Processing:    10  294  25.7    293     363
+    Waiting:        6  294  25.7    293     361
+    Total:         14  295  25.5    293     367
+
+    Percentage of the requests served within a certain time (ms)
+    50%    293
+    66%    298
+    75%    302
+    80%    306
+    90%    318
+    95%    335
+    98%    343
+    99%    346
+    100%    367 (longest request)
