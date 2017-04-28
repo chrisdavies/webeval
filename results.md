@@ -28,6 +28,9 @@ Phoenix feels Railsey which in my book is not a pro. However, for being a full-f
 
 Rails is slower than I expected, coming in at around 300 requests per second. I don't know if it is similar to Node in that it may need some extra configuration to take advantage of all my CPU cores.
 
+Python Japronto is supposed to be blazing fast. It doesn't appear to be so on my Mac. It is faster than Rails, but slower than everything else. I'm not sure what I'm doing wrong here, any advice is appreciated (or better yet, pull requests!).
+
+
 ## Benchmark summary
 
 Clojure (users), async postgres test
@@ -102,6 +105,14 @@ Rails
     Waiting:        6  294  25.7    293     361
     Total:         14  295  25.5    293     367
 
+Python (Japronto)
+
+    Requests per second:    474.32 [#/sec] (mean)
+                    min  mean[+/-sd] median   max
+    Connect:        0    0   0.8      0      13
+    Processing:    25  210  30.3    208     329
+    Waiting:       25  204  29.5    202     325
+    Total:         29  210  30.3    208     331
 
 ## Raw results
 
@@ -419,3 +430,41 @@ Rails
     98%    343
     99%    346
     100%    367 (longest request)
+
+Python (Japronto)
+
+    Server Software:
+    Server Hostname:        127.0.0.1
+    Server Port:            8080
+
+    Document Path:          /api/users
+    Document Length:        431 bytes
+
+    Concurrency Level:      100
+    Time taken for tests:   10.541 seconds
+    Complete requests:      5000
+    Failed requests:        0
+    Total transferred:      2590000 bytes
+    HTML transferred:       2155000 bytes
+    Requests per second:    474.32 [#/sec] (mean)
+    Time per request:       210.826 [ms] (mean)
+    Time per request:       2.108 [ms] (mean, across all concurrent requests)
+    Transfer rate:          239.94 [Kbytes/sec] received
+
+    Connection Times (ms)
+                min  mean[+/-sd] median   max
+    Connect:        0    0   0.8      0      13
+    Processing:    25  210  30.3    208     329
+    Waiting:       25  204  29.5    202     325
+    Total:         29  210  30.3    208     331
+
+    Percentage of the requests served within a certain time (ms)
+    50%    208
+    66%    214
+    75%    218
+    80%    221
+    90%    233
+    95%    261
+    98%    292
+    99%    304
+    100%    331 (longest request)
