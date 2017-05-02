@@ -17,6 +17,7 @@ defmodule ExUsers.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/users", UsersController, :index
+    get "/proxy", UsersController, :proxy
   end
 
   # Other scopes may use custom stacks.

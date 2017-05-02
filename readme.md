@@ -17,4 +17,3 @@ Each folder is a small web api project that essentially queries a Postgres db, r
 ## Database
 
 See the `sql` folder for details on setting up the Postgres db.
-
