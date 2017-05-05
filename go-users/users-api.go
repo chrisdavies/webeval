@@ -18,6 +18,8 @@ type User struct {
 }
 
 func main() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
 	http.DefaultTransport.(*http.Transport).MaxIdleConnsPerHost = 200
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
