@@ -8,7 +8,6 @@ import (
 	"runtime"
 
 	"github.com/jackc/pgx"
-	"github.com/julienschmidt/httprouter"
 )
 
 var db *pgx.ConnPool
@@ -27,7 +26,7 @@ func main() {
 	initServer()
 }
 
-func usersHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func usersHandler(w http.ResponseWriter, r *http.Request) {
 	rows, err := db.Query("select id, email from users limit 10")
 
 	if err != nil {
@@ -57,7 +56,7 @@ func jsonMarshal(w http.ResponseWriter, v interface{}) {
 	}
 }
 
-func proxyHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	resp, err := http.Get("http://127.0.0.1:8081/?ms=500")
 	if err != nil {
 		log.Printf("error proxying: %s\n", err)
@@ -74,11 +73,9 @@ func proxyHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func initServer() {
-	router := httprouter.New()
-	router.GET("/api/users/", usersHandler)
-	router.GET("/api/proxy/", proxyHandler)
-
-	log.Fatal(http.ListenAndServe(":3000", router))
+	http.HandleFunc("/api/users/", usersHandler)
+	http.HandleFunc("/api/proxy/", proxyHandler)
+	http.ListenAndServe(":3000", nil)
 }
 
 func initDatabase() *pgx.ConnPool {
@@ -96,5 +93,5 @@ func initDatabase() *pgx.ConnPool {
 		log.Fatalf("DB connection failed: \n ", err)
 	}
 
-	return connPool, err
+	return connPool
 }
