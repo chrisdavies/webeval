@@ -5,6 +5,7 @@
                  [ring "1.6.0-RC3"]
                  [compojure "1.6.0-beta3"]
                  [manifold "0.1.6"]
+                 [http-kit "2.2.0"]
                  [org.clojure/core.async "0.3.442"]
                  [alaisi/postgres.async "0.8.0"]
                  [http.async.client "1.2.0"]

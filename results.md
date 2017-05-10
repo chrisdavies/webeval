@@ -43,10 +43,10 @@ Python Japronto is supposed to be blazing fast. It was unimpressive in the SQL t
 
 - Go 196.99 [#/sec] (mean), time per: 507.638 [ms] (mean), 3.0 std dev
 - C# 194.33 [#/sec] (mean), 514.595 [ms] (mean), 10.8 std dev
+- Clojure 194.40 [#/sec] (mean), 514.401 [ms] (mean), 13.4 std dev
 - Elixir 194.13 [#/sec] (mean), time per: 515.129 [ms] (mean), 6.2 std dev
 - Python 176.89 [#/sec] (mean), 565.313 [ms] (mean), 25.7 std dev
 - Node 186.03 [#/sec] (mean), 537.540 [ms] (mean), 18.3 std dev
-- Clojure 89.95 [#/sec] (mean), 1111.693 [ms] (mean), 124.4 std dev
 - Rails 9.79 [#/sec] (mean), 10209.735 [ms] (mean), 1238.1 std dev
 
 
@@ -69,7 +69,7 @@ Python Japronto is supposed to be blazing fast. It was unimpressive in the SQL t
 - Node        - CPU: 15%, RAM: ~100 MB
 - Elixir      - CPU: 38-56%, RAM: ~100 MB
 - .NET Core   - CPU: 60%, RAM: 170 MB
-- Clojure     - CPU: 50-100%, RAM: ~1 GB
+- Clojure     - CPU: 50%, RAM: 850 MB
 
 
 ## Raw results
@@ -524,9 +524,7 @@ Elixir
 
 Clojure
 
-    CPU: 50-100%, RAM: ~1 GB
-
-    Server Software:        Jetty(9.2.z-SNAPSHOT)
+    Server Software:        Jetty(9.2.17.v20160517)
     Server Hostname:        127.0.0.1
     Server Port:            3000
 
@@ -534,33 +532,33 @@ Clojure
     Document Length:        20 bytes
 
     Concurrency Level:      100
-    Time taken for tests:   22.234 seconds
+    Time taken for tests:   10.288 seconds
     Complete requests:      2000
     Failed requests:        0
-    Total transferred:      214000 bytes
+    Total transferred:      258000 bytes
     HTML transferred:       40000 bytes
-    Requests per second:    89.95 [#/sec] (mean)
-    Time per request:       1111.693 [ms] (mean)
-    Time per request:       11.117 [ms] (mean, across all concurrent requests)
-    Transfer rate:          9.40 [Kbytes/sec] received
+    Requests per second:    194.40 [#/sec] (mean)
+    Time per request:       514.401 [ms] (mean)
+    Time per request:       5.144 [ms] (mean, across all concurrent requests)
+    Transfer rate:          24.49 [Kbytes/sec] received
 
     Connection Times (ms)
                 min  mean[+/-sd] median   max
-    Connect:        0    0   0.7      0       6
-    Processing:   535 1087 124.7   1066    1590
-    Waiting:      535 1087 124.7   1066    1590
-    Total:        540 1087 124.4   1067    1591
+    Connect:        0    1   1.2      0       9
+    Processing:   501  511  12.7    508     599
+    Waiting:      501  511  12.7    508     599
+    Total:        502  512  13.4    509     602
 
     Percentage of the requests served within a certain time (ms)
-    50%   1067
-    66%   1088
-    75%   1106
-    80%   1119
-    90%   1205
-    95%   1333
-    98%   1427
-    99%   1477
-    100%   1591 (longest request)
+    50%    509
+    66%    511
+    75%    513
+    80%    514
+    90%    518
+    95%    525
+    98%    574
+    99%    587
+    100%    602 (longest request)
 
 .NET Core
 
@@ -730,34 +728,41 @@ Python
 
 Clojure
 
+    Server Software:        Jetty(9.2.17.v20160517)
+    Server Hostname:        127.0.0.1
+    Server Port:            3000
+
+    Document Path:          /api/proxy/
+    Document Length:        20 bytes
+
     Concurrency Level:      400
-    Time taken for tests:   22.427 seconds
+    Time taken for tests:   2.974 seconds
     Complete requests:      2000
     Failed requests:        0
-    Total transferred:      214000 bytes
+    Total transferred:      258000 bytes
     HTML transferred:       40000 bytes
-    Requests per second:    89.18 [#/sec] (mean)
-    Time per request:       4485.303 [ms] (mean)
-    Time per request:       11.213 [ms] (mean, across all concurrent requests)
-    Transfer rate:          9.32 [Kbytes/sec] received
+    Requests per second:    672.51 [#/sec] (mean)
+    Time per request:       594.789 [ms] (mean)
+    Time per request:       1.487 [ms] (mean, across all concurrent requests)
+    Transfer rate:          84.72 [Kbytes/sec] received
 
     Connection Times (ms)
                 min  mean[+/-sd] median   max
-    Connect:        0    2   4.2      0      16
-    Processing:   534 4040 927.7   4371    4916
-    Waiting:      534 4040 927.7   4371    4915
-    Total:        549 4042 923.9   4372    4922
+    Connect:        0    3   4.1      1      16
+    Processing:   501  549  98.9    506     908
+    Waiting:      500  549  99.0    506     908
+    Total:        501  551 101.5    507     914
 
     Percentage of the requests served within a certain time (ms)
-    50%   4372
-    66%   4404
-    75%   4430
-    80%   4464
-    90%   4528
-    95%   4561
-    98%   4670
-    99%   4804
-    100%   4922 (longest request)
+    50%    507
+    66%    512
+    75%    519
+    80%    530
+    90%    729
+    95%    826
+    98%    879
+    99%    896
+    100%    914 (longest request)
 
 Go
 

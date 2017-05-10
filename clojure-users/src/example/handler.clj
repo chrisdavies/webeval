@@ -6,7 +6,7 @@
             [postgres.async :refer :all]
             [clojure.core.async :as async]
             [clojure.java.jdbc :as j]
-            [http.async.client :as http]
+            [org.httpkit.client :as http]
             compojure.api.async))
 
 (def db (open-db {:hostname "localhost"
@@ -27,24 +27,18 @@
    (context "/api" []
      :tags ["api"]
 
-     (GET  "/proxy/" []
+    (GET  "/proxy/" []
        :summary "Proxies to dummy API"
        (fn [_ respond _]
-         (with-open [client (http/create-client)]
-          (let [response (http/GET client "http://127.0.0.1:8081/?ms=500")]
-            (-> response
-                http/await
-                http/string
-                ok
-                respond)))))
+         (http/get "http://127.0.0.1:8081/?ms=500" #(respond (ok (:body %))))))
 
     (GET "/users/" []
       :summary "Gets a list of users"
       (fn [_ respond _]
-        (->> (async/<!! (execute! db ["select id, email from users limit 10"]))
-             :rows
-             ok
-             respond)))
+        (let [result  (async/<!! (execute! db ["select id, email from users limit 10"]))]
+          (if (:rows result)
+              (respond (ok (result 32 "hello" "world")))
+              (respond {:status 500 :body result})))))
 
     (GET "/syncusers/" []
       :summary "Gets a list of users (synchronous)"
